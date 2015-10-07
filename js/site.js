@@ -10,8 +10,7 @@ function generateDash(data,geom){
     var resourceChart = dc.rowChart('#resource');
     var modalityChart = dc.rowChart('#modality');
     var statusChart = dc.rowChart('#status');
-
-    //var mapChart = dc.leafletChoroplethChart('#map');
+    var mapChart = dc.leafletChoroplethChart('#map');
 
     var societyDimension = cf.dimension(function(d){return d['#org']});
     var societyGroup = societyDimension.group();
@@ -26,7 +25,10 @@ function generateDash(data,geom){
     var modalityGroup = modalityDimension.group(); 
 
     var statusDimension = cf.dimension(function(d){return d['#status']});
-    var statusGroup = statusDimension.group();     
+    var statusGroup = statusDimension.group();
+
+    var mapDimension = cf.dimension(function(d){return d['#country']});
+    var mapGroup = mapDimension.group();          
 
     var all = cf.groupAll();
 
@@ -84,7 +86,7 @@ function generateDash(data,geom){
             .dimension(cf)
             .group(all);
 
-    /*mapChart.width($('#map').width()).height(250)
+    mapChart.width($('#map').width()).height(250)
             .dimension(mapDimension)
             .group(mapGroup)
             .center([47,15])
@@ -112,7 +114,7 @@ function generateDash(data,geom){
                 'opacity':0,
                 'fillOpacity': 0,
                 'weight': 1
-            })          ;*/    
+            })   
             
         dc.dataTable("#data-table")
                 .dimension(societyDimension)                
@@ -182,7 +184,7 @@ $('#intro').click(function(){
         intro.setOptions({
             steps: [
               {
-                element: '#what',
+                element: '#society',
                 intro: "Charts can be clicked and interacted with.  When you click an item on a chart if filters the data so the other charts only show data for this item.",
                 position: 'right'
               },
@@ -226,7 +228,6 @@ $.when(dataCall, geomCall).then(function(dataArgs, geomArgs){
     console.log('load');
     var geom = topojson.feature(geomArgs[0],geomArgs[0].objects.geom);
     var data = hxlProxyToJSON(dataArgs[0]);
-    console.log(data);
     generateDash(data,geom);
 });
 
