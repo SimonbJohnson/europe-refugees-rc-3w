@@ -52,7 +52,7 @@ function generateDash(data,geom){
             .ordering(function(d){ return -d.value })
             .xAxis().ticks(5);
 
-    resourceChart.width($('#what').width()).height(250)
+    resourceChart.width($('#what').width()).height(200)
             .dimension(resourceDimension)
             .group(resourceGroup)
             .elasticX(true)
@@ -62,7 +62,7 @@ function generateDash(data,geom){
             .ordering(function(d){ return -d.value })
             .xAxis().ticks(5);
 
-    modalityChart.width($('#what').width()).height(250)
+    modalityChart.width($('#what').width()).height(200)
             .dimension(modalityDimension)
             .group(modalityGroup)
             .elasticX(true)
@@ -72,7 +72,7 @@ function generateDash(data,geom){
             .ordering(function(d){ return -d.value })
             .xAxis().ticks(5);
 
-    statusChart.width($('#what').width()).height(250)
+    statusChart.width($('#what').width()).height(200)
             .dimension(statusDimension)
             .group(statusGroup)
             .elasticX(true)
@@ -86,10 +86,10 @@ function generateDash(data,geom){
             .dimension(cf)
             .group(all);
 
-    mapChart.width($('#map').width()).height(250)
+    mapChart.width($('#map').width()).height(300)
             .dimension(mapDimension)
             .group(mapGroup)
-            .center([47,15])
+            .center([50,15])
             .zoom(3)    
             .geojson(geom)
             .colors(['#CCCCCC', '#03a9f4'])
